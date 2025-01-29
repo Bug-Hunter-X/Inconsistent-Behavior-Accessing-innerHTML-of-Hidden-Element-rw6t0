@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Uncommon HTML Bug Solution</title>
+</head>
+<body>
+  <div id="myDiv">
+    This text is initially visible.
+  </div>
+  <button onclick="myFunction()">Click Me</button>
+
+  <script>
+    function myFunction() {
+      document.getElementById("myDiv").innerHTML = "";
+      document.getElementById("myDiv").style.display = "none";
+      // Solution: Check if the element is visible before accessing innerHTML
+      if (window.getComputedStyle(document.getElementById("myDiv")).display !== "none") {
+        let hiddenContent = document.getElementById("myDiv").innerHTML;
+        console.log(hiddenContent);
+      } else {
+        console.log("Element is hidden. Cannot access innerHTML.");
+      }
+    }
+  </script>
+</body>
+</html>
