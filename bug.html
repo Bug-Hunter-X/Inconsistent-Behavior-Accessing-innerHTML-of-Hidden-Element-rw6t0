@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Uncommon HTML Bug</title>
+</head>
+<body>
+  <div id="myDiv">
+    This text is initially visible.
+  </div>
+  <button onclick="myFunction()">Click Me</button>
+
+  <script>
+    function myFunction() {
+      document.getElementById("myDiv").innerHTML = ""; // Clearing the div content
+      document.getElementById("myDiv").style.display = "none"; // Hiding the div
+      // The bug: Attempting to access innerHTML of a hidden element can throw errors in some browsers or lead to unexpected behavior.
+      // The error might not always be thrown consistently, adding to the difficulty in debugging.
+      let hiddenContent = document.getElementById("myDiv").innerHTML; // Accessing innerHTML after hiding
+      console.log(hiddenContent); // This line might not always work as expected
+    }
+  </script>
+</body>
+</html>
